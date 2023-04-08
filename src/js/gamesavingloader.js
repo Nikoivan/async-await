@@ -1,6 +1,6 @@
-import GameSaving from "./gamesaving";
-import json from "./parser";
-import read from "./reader";
+import GameSaving from './gamesaving';
+import json from './parser';
+import read from './reader';
 
 class GameSavingLoader {
   constructor() {
@@ -8,15 +8,10 @@ class GameSavingLoader {
   }
 
   async load() {
-    try {
-      const buffer = await this.read;
-      const arr = await json(buffer);
-      const result = JSON.parse(arr);
-      const gameSavingResult = new GameSaving(result);
-      return gameSavingResult;
-    } catch (e) {
-      console.error(e);
-    }
+    const buffer = await this.read;
+    const arr = await json(buffer);
+    const result = JSON.parse(arr);
+    return new GameSaving(result);
   }
 }
 
