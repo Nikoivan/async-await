@@ -3,15 +3,10 @@ import json from './parser';
 import read from './reader';
 
 class GameSavingLoader {
-  constructor() {
-    this.read = read();
-  }
-
-  async load() {
-    const buffer = await this.read;
+  static async load() {
+    const buffer = await read();
     const arr = await json(buffer);
-    const result = JSON.parse(arr);
-    return new GameSaving(result);
+    return new GameSaving(JSON.parse(arr));
   }
 }
 
